@@ -1,0 +1,469 @@
+@charset "UTF-8";
+
+/* CSS Stylesheet for _DocBook: The Definitive Guide_
+ * Copyright © 2010, 2011, 2020 Norman Walsh.
+ */
+
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=PT+Mono&display=swap");
+
+:root {
+    --body-family: "EB Garamond", serif;
+    --verbatim-odd-background-color: #fafafa;
+    --verbatim-even-background-color: #fafafa;
+    --docbook-green: #00706b;
+    -moz-osx-font-smoothing: grayscale;
+    max-width: inherit;
+}
+
+html {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+body {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+main {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+main > div,
+main > article {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.book > header {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.book > header h1 {
+    text-align: left;
+}
+
+.book .covergraphic * {
+    float: left;
+}
+
+.book .covergraphic img {
+    float: left;
+    margin-right: 20px;
+    border: solid black 1px;
+}
+
+header .authorgroup {
+    margin-bottom: 0;
+}
+
+#backcover {
+    position: relative;
+    top: -60px;
+    height: 0px;
+    left: 380px;
+}
+
+/* html.css (in Firefox?) fiddles with heading sizes when
+   the parent is a article, aside, nav, or section. WTF? */
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5 {
+    font-size: 1.0em;
+}
+
+code {
+    font-size: 75%;
+}
+
+.pre-wrap {
+    overflow: scroll;
+    background-color: var(--verbatim-odd-background-color);
+}
+
+pre.programlisting,
+pre.screen {
+    line-height: 1.0em;
+}
+
+pre.numbered span.ln {
+    font-size: 75%;
+    width: 2rem;
+}
+
+a,
+a:visited {
+    color: var(--docbook-green);
+    text-decoration: none;
+}
+
+.sincerev {
+  background-color: black;
+  color: white;
+  font-family: var(--title-family), sans-serif;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  border-radius: 4px;
+}
+
+h1 .sincerev,
+h2 .sincerev {
+  position: absolute;
+  top: 3.5rem;
+  right: 3.5rem;
+  font-size: 0.75rem;
+  display: none;
+}  
+
+li .sincerev {
+    margin-left: 0.5rem;
+    font-size: 50%;
+    font-weight: bold;
+    line-height: 1.25em;
+}
+
+/* ============================================================ */
+
+.cmjs {
+    color: #bfbfbf;
+    cursor: pointer;
+}
+
+.cmdelete {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.cmsidebar {
+    display: none;
+    float: right;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.cmsidebar .cmx {
+    float: right;
+    cursor: pointer;
+    font-size: 32px;
+    padding-right: 0.25rem;
+}
+
+.cmsidebar .title {
+    font-size: 18px;
+    margin-bottom: 0;
+    padding-left: 0.5rem;
+    background-color: rgb(124,189,179);
+}
+
+.cmsidebar .body {
+    width: 8rem;
+    height: 12rem;
+    overflow: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow: scrool;
+}    
+
+.cmsidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ============================================================ */
+
+nav.top {
+    width: 100%;
+    background-color: var(--docbook-green);
+    color: #fffff8;
+}
+
+nav.top .nav {
+    float: left;
+    margin-left: 0.25rem;
+}
+
+nav.top .text {
+    float: right;
+    font-size: 18px;
+    margin-right: 0.25rem;
+}
+
+nav.bottom {
+    background-color: var(--docbook-green);
+    min-height: 1.0rem;
+    color: white;
+    margin-bottom: 0px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-top-style: solid;
+    border-top-width: 1px;
+    display: grid;
+    font-size: 1.0rem;
+}
+
+.navrow {
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+}
+
+.navleft {
+    text-align: left;
+    grid-column: 1;
+}
+
+.navmiddle {
+    text-align: center;
+    grid-column: 2;
+}
+
+.navright {
+    text-align: right;
+    grid-column: 3;
+}
+
+.navrow .navtitle {
+    font-size: 18px;
+}
+
+nav .version {
+    display: none;
+}
+
+nav a,
+nav a:visited {
+    color: #fffff8;
+}
+
+nav .title {
+    color: inherit;
+    background-color: inherit;
+}
+
+.infofooter {
+    padding-top: 0.5rem;
+    font-size: 14px;
+}
+
+.infofooter > .revision {
+    float: right;
+    display: none;
+}
+
+.infofooter > .copyrightfooter {
+    float: left;
+}
+
+nav.bottom img {
+    vertical-align: text-bottom;
+}
+
+span.githash {
+  font-size: 90%; }
+
+div.copyrightfooter {
+  margin-top: 0px;
+  padding-top: 5px;
+  font-size: 14px;
+}
+
+#bookhome footer {
+    display: none;
+}
+
+#bookhome main {
+    padding-bottom: 4em;
+}
+
+.colophon {
+    margin: inherit;
+    border: inherit;
+    border-radius: inherit;
+    padding: inherit;
+}
+
+.calloutlist dl dt { float: left; width: 1.75rem; }
+.calloutlist dl dd { margin-left: 1.75rem; }
+.calloutlist .callout {
+    font-size: 80%;
+}
+
+/* ============================================================ */
+
+.revadded {
+    background-color: inherit;
+}
+
+.revadded::before {
+    content: none;
+}
+
+.revadded::after {
+    content: none;
+}
+
+.revchanged {
+    background-color: inherit;
+}
+
+.revchanged::before {
+    content: none;
+}
+
+.revchanged::after {
+    content: none;
+}
+
+.revdeleted {
+    background-color: inherit;
+}
+
+.revdeleted::before {
+    content: none;
+}
+
+.revdeleted::after {
+    content: none;
+}
+
+.revoff .revadded,
+.revoff .revchanged,
+.revoff .revdeleted {
+    background-color: inherit;
+}
+
+.revoff .revadded::before,
+.revoff .revchanged::before,
+.revoff .revdeleted::before,
+.revoff .revadded::after,
+.revoff .revchanged::after,
+.revoff .revdeleted::after {
+    content: "";
+}
+
+nav.tocopen span {
+    display: none;
+}
+
+nav.tocopen:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  content: "\f0cb";
+}
+
+/* ============================================================ */
+
+@media screen and (min-width: 480px)
+{
+    main > div,
+    main > article {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    nav.top .nav {
+        padding-left: 1rem;
+    }
+
+    nav.top .text {
+        padding-right: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px)
+{
+    main {
+        width: 50rem;
+    }
+
+    main > div,
+    main > article {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    nav .version {
+        display: inline;
+    }
+
+    nav.top .nav {
+        padding-left: 2rem;
+    }
+
+    nav.top .text {
+        padding-right: 2rem;
+    }
+
+    h1 .sincerev,
+    h2 .sincerev {
+        display: block;
+        font-weight: bold;;
+    }
+
+    .cmdelete {
+        float: left;
+        margin-left: -1.25rem;
+        width: 1.25rem;
+    }
+
+    .infofooter {
+        margin-top: 0.5rem;
+        border-top: solid 1px #aaaaaa;
+    }
+
+    .infofooter > .revision {
+        display: inline;
+    }
+
+    header {
+        padding-right: 2rem;
+    }
+
+    nav.slide header {
+        padding-right: 0;
+    }
+
+    footer {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media screen and (min-width: 1023px) {
+    .cmsidebar {
+        display: block;
+    }
+}
