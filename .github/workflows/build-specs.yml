@@ -14,7 +14,7 @@ jobs:
         id: load
         run: |
           echo "Test"
-          echo `cat gradle.properties | grep "^docbookBaseVersion"`
+          echo `cat gradle.properties | grep "^docbookBaseVersion" | cut -f2 -d=`
           echo smoketest=HELLO >> $GITHUB_OUTPUT
           echo dbversion=`cat gradle.properties | grep "^docbookBaseVersion" | cut -f2 -d=` >> $GITHUB_OUTPUT
 
@@ -44,6 +44,9 @@ jobs:
           echo Version ${{ env.DBVERSION }}
           echo Smoke ${{ env.SMOKETEST }}
           echo Branch ${{ env.BRANCH_NAME }}
+          echo Smoke2 ${{ needs.load_config.outputs.smoketest }}
+          echo dump ${{ needs.load_config.outputs }}
+
 
 #      - name: Deploy docbook-5.2 to specifications
 #        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'docbook-5.2' }}
