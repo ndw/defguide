@@ -4,8 +4,8 @@ jobs:
   load_config:
     runs-on: ubuntu-latest
     outputs:
-      dbversion: ${{ steps.load.dbversion }}
-      smoketest: ${{ steps.load.smoketest }}
+      dbversion: ${{ steps.load.outputs.dbversion }}
+      smoketest: ${{ steps.load.outputs.smoketest }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
