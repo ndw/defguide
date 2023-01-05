@@ -4,7 +4,7 @@ jobs:
   load_config:
     runs-on: ubuntu-latest
     outputs:
-      dbversion: ${{ steps.load.outputs.dbversion }}
+      dbversion: ${{ steps.load.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -12,7 +12,9 @@ jobs:
       - name: Load the configuration
         id: load
         run: |
-          echo dbversion=`cat gradle.properties | grep "^docbookBaseVersion" | cut -f2 -d=` >> $GITHUB_OUTPUT
+          echo version=`cat gradle.properties \
+               | grep "^docbookBaseVersion" \
+               | cut -f2 -d=` >> $GITHUB_OUTPUT
 
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -28,22 +30,3 @@ jobs:
       - name: What version is this?
         run: |
           echo DocBook version ${{ env.DBVERSION }}
-
-      - name: Deploy docbook-5.2 to specifications
-        run: |
-          echo Version ${{ env.DBVERSION }}
-          echo Smoke ${{ env.SMOKETEST }}
-          echo Branch ${{ env.BRANCH_NAME }}
-          echo Smoke2 ${{ needs.load_config.outputs.smoketest }}
-          echo dump ${{ needs.load_config.outputs }}
-
-
-#      - name: Deploy docbook-5.2 to specifications
-#        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'docbook-5.2' }}
-#        uses: JamesIves/github-pages-deploy-action@v4
-#        with:
-#          folder: build/www
-#          token: ${{ secrets.ACCESS_TOKEN }}
-#          branch: gh-pages
-#          target-folder: /specifications
-
