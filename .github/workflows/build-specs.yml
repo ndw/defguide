@@ -14,7 +14,7 @@ jobs:
       - name: Load the configuration
         id: load
         run: |
-          echo dbversion=`cat gradle.properties | grep "^docbookBaseVersion" | cut -f2 -d` >> $GITHUB_OUTPUT
+          echo dbversion=`cat gradle.properties | grep "^docbookBaseVersion" | cut -f2 -d=` >> $GITHUB_OUTPUT
 
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew dist
+          echo ./gradlew dist
 
       - name: Deploy docbook-5.2 to specifications
         run: |
