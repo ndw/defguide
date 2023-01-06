@@ -69,8 +69,7 @@ jobs:
                 ./tdg/website/${{ env.DBVERSION }}/
 
       - name: Deploy to gh-pages
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' \
-            && (github.ref_name == 'docbook-5.2' || github.ref_name == 'db52-ci') }}
+        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && (github.ref_name == 'docbook-5.2' || github.ref_name == 'db52-ci') }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
