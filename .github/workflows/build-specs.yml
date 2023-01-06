@@ -30,9 +30,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: What version is this?
+      - name: Git log summary
         run: |
-          ./gradlew dist
+          ./tools/bin/git-log-summary
+
+      - name: Build specifications
+        run: |
+          echo ./gradlew dist
 
       - name: Deploy docbook-5.2 to specifications
         run: |
