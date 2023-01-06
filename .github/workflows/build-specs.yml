@@ -51,7 +51,22 @@ jobs:
           ref: gh-pages
 
       - name: Update the published versions
-        run: rsync -var --delete /tmp/dist/ tdg/
+        run: |
+          mkdir -p ./tdg/${{ env.DBVERSION }}
+          rsync -var --delete /tmp/dist/${{ env.DBVERSION }}/ \
+                ./tdg/${{ env.DBVERSION }}/
+          mkdir -p ./tdg/publishers/${{ env.DBVERSION }}
+          rsync -var --delete /tmp/dist/publishers/${{ env.DBVERSION }}/ \
+                ./tdg/publishers/${{ env.DBVERSION }}/
+          mkdir -p ./tdg/sdocbook/${{ env.DBVERSION }}
+          rsync -var --delete /tmp/dist/sdocbook/${{ env.DBVERSION }}/ \
+                ./tdg/sdocbook/${{ env.DBVERSION }}/
+          mkdir -p ./tdg/slides/${{ env.DBVERSION }}
+          rsync -var --delete /tmp/dist/slides/${{ env.DBVERSION }}/ \
+                ./tdg/slides/${{ env.DBVERSION }}/
+          mkdir -p ./tdg/website/${{ env.DBVERSION }}
+          rsync -var --delete /tmp/dist/website/${{ env.DBVERSION }}/ \
+                ./tdg/website/${{ env.DBVERSION }}/
 
       - name: What’s changed?
         run: git status
