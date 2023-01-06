@@ -68,15 +68,9 @@ jobs:
           rsync -var --delete /tmp/dist/website/${{ env.DBVERSION }}/ \
                 ./tdg/website/${{ env.DBVERSION }}/
 
-      - name: What’s changed?
-        run: git status
-
-#      - name: Deploy docbook-5.2 to specifications
-#        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'docbook-5.2' }}
-#        uses: JamesIves/github-pages-deploy-action@v4
-#        with:
-#          folder: build/www
-#          token: ${{ secrets.ACCESS_TOKEN }}
-#          branch: gh-pages
-#          target-folder: /specifications
-
+      - name: Deploy to gh-pages
+        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'docbook-5.2' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
