@@ -25,22 +25,36 @@ jobs:
       DBVERSION: ${{ needs.load_config.outputs.dbversion }}
 
     steps:
+      - name: Install dependencies
+        run: sudo apt-get install rsync
+
       - name: Checkout the specifications
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Git log summary
-        run: |
-          ./tools/bin/git-log-summary
+      - name: Info
+        run: echo Building ${{ env.DBVERSION }} of ${{ env.BRANCH_NAME }}
 
       - name: Build specifications
         run: |
-          echo ./gradlew dist
+          ./gradlew dist
 
-      - name: Deploy docbook-5.2 to specifications
+      - name: Save the built version
         run: |
-          echo Version ${{ env.DBVERSION }}
+          mkdir /tmp/dist
+          rsync -ar build/dist/ /tmp/dist/
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          branch: gh-pages
+
+      - name: Update the published versions
+        run: rsync -var --delete /tmp/dist/ tdg/
+
+      - name: What’s changed?
+        run: git status
 
 #      - name: Deploy docbook-5.2 to specifications
 #        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'docbook-5.2' }}
